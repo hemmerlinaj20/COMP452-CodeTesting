@@ -32,36 +32,7 @@ public class StatsPanel extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0,40)));
 
         resultsPanel = new JPanel();
-        resultsLabels = new ArrayList<>();
-        resultsPanel.setLayout(new GridLayout(0, 2));
-        resultsPanel.add(new JLabel("Guesses"));
-        resultsPanel.add(new JLabel("Games"));
-        for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
-            String binName;
-            if(binIndex == BIN_EDGES.length-1){
-                // last bin
-                binName = BIN_EDGES[binIndex] + " or more";
-            }
-            else{
-                int upperBound = BIN_EDGES[binIndex+1] - 1;
-                if(upperBound > BIN_EDGES[binIndex]){
-                    binName = BIN_EDGES[binIndex] + "-" + upperBound;
-                }
-                else{
-                    binName = Integer.toString(BIN_EDGES[binIndex]);
-                }
-            }
-
-            resultsPanel.add(new JLabel(binName));
-            JLabel result = new JLabel("--");
-            resultsLabels.add(result);
-            resultsPanel.add(result);
-        }
-
-        resultsPanel.setMinimumSize(new Dimension(120, 120));
-        this.add(resultsPanel);
-        resultsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        updateResultsPanel();
+        createResultsPanel(resultsPanel);
 
         this.add(Box.createVerticalGlue());
 
@@ -83,6 +54,41 @@ public class StatsPanel extends JPanel {
         });
     }
 
+    private String findBinName(int binIndex){
+        String binName;
+        if(binIndex == BIN_EDGES.length-1){
+            // last bin
+            binName = BIN_EDGES[binIndex] + " or more";
+        }
+        else{
+            int upperBound = BIN_EDGES[binIndex+1] - 1;
+            if(upperBound > BIN_EDGES[binIndex]){
+                binName = BIN_EDGES[binIndex] + "-" + upperBound;
+            }
+            else{
+                binName = Integer.toString(BIN_EDGES[binIndex]);
+            }
+        }
+        return binName;
+    }
+
+    private void createResultsPanel(JPanel resultsPanel){
+        resultsLabels = new ArrayList<>();
+        resultsPanel.setLayout(new GridLayout(0, 2));
+        resultsPanel.add(new JLabel("Guesses"));
+        resultsPanel.add(new JLabel("Games"));
+        for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++){
+            resultsPanel.add(new JLabel(findBinName(binIndex)));
+            JLabel result = new JLabel("--");
+            resultsLabels.add(result);
+            resultsPanel.add(result);
+        }
+
+        resultsPanel.setMinimumSize(new Dimension(120, 120));
+        this.add(resultsPanel);
+        resultsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        updateResultsPanel();
+    }
 
     private void clearResults(){
         for(JLabel lbl : resultsLabels){
