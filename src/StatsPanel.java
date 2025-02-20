@@ -7,9 +7,6 @@ import java.util.ArrayList;
  * Loads data from the file and displays in a JPanel
  */
 public class StatsPanel extends JPanel {
-
-    private final JPanel resultsPanel;
-
     // Stats will display the number of games in each "bin"
     // A bin goes from BIN_EDGES[i] through BIN_EDGES[i+1]-1, inclusive
     private static final int [] BIN_EDGES = {1, 2, 4, 6, 8, 10, 12, 14};
@@ -29,8 +26,7 @@ public class StatsPanel extends JPanel {
 
         this.add(Box.createRigidArea(new Dimension(0,40)));
 
-        resultsPanel = new JPanel();
-        createResultsPanel(resultsPanel);
+        JPanel resultsPanel = createResultsPanel();
 
         this.add(Box.createVerticalGlue());
 
@@ -70,7 +66,8 @@ public class StatsPanel extends JPanel {
         return binName;
     }
 
-    private void createResultsPanel(JPanel resultsPanel){
+    private JPanel createResultsPanel(){
+        JPanel resultsPanel = new JPanel();
         resultsLabels = new ArrayList<>();
         resultsPanel.setLayout(new GridLayout(0, 2));
         resultsPanel.add(new JLabel("Guesses"));
@@ -86,6 +83,8 @@ public class StatsPanel extends JPanel {
         this.add(resultsPanel);
         resultsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         updateResultsPanel();
+
+        return resultsPanel;
     }
 
     private void clearResults(){
