@@ -21,6 +21,7 @@ public class HumanGuessesGame {
         gameIsDone = false;
     }
 
+    //TODO: test
     GuessResult makeGuess(int value){
         numGuesses += 1;
 
@@ -34,6 +35,7 @@ public class HumanGuessesGame {
         return GuessResult.CORRECT;
     }
 
+    //TODO: test
     int getNumGuesses(){
         return numGuesses;
     }

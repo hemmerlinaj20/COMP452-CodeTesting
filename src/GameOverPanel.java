@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.time.LocalDateTime;
 
 /**
@@ -72,27 +73,46 @@ public class GameOverPanel extends JPanel {
     public void setGameResults(GameResult result){
         this.gameResult = result;
 
-        answerTxt.setText("The answer was " + result.correctValue + ".");
-        if(result.numGuesses == 1){
-            numGuessesTxt.setText((result.humanWasPlaying ? "You" : "I") + " guessed it on the first try!");
-        }
-        else {
-            numGuessesTxt.setText("It took " + (result.humanWasPlaying ? "you" : "me") + " " + result.numGuesses + " guesses.");
-        }
+        updateAnsAndGuesses();
 
         if(result.humanWasPlaying){
-            // write stats to file
-            try(CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true))) {
-
-                String [] record = new String[2];
-                record[0] = LocalDateTime.now().toString();
-                record[1] = Integer.toString(result.numGuesses);
-
-                writer.writeNext(record);
-            } catch (IOException e) {
-                // NOTE: In a full implementation, we would log this error and possibly alert the user
-                // NOTE: For this project, you do not need unit tests for handling this exception.
-            }
+            writeResults();
         }
+    }
+
+    private void updateAnsAndGuesses(){
+        String newAnswerText = "The answer was " + this.gameResult.correctValue + ".";
+        String newGuessesText = getGuessesMessage();
+
+        answerTxt.setText(newAnswerText);
+        numGuessesTxt.setText(newGuessesText);
+    }
+
+    private String getGuessesMessage(){
+        if(this.gameResult.numGuesses == 1){
+            return (this.gameResult.humanWasPlaying ? "You" : "I") + " guessed it on the first try!";
+        }
+        else {
+            return "It took " + (this.gameResult.humanWasPlaying ? "you" : "me") + " " + this.gameResult.numGuesses + " guesses.";
+        }
+    }
+
+    //using dependency injection
+    private void writeResults(){
+        try {
+            CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true));
+            writeResults(writer);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //using dependency injection
+    private void writeResults(CSVWriter writer){
+        String [] record = new String[2];
+        record[0] = LocalDateTime.now().toString();
+        record[1] = Integer.toString(this.gameResult.numGuesses);
+
+        writer.writeNext(record);
     }
 }
