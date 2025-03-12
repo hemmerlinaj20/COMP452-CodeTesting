@@ -97,22 +97,22 @@ public class GameOverPanel extends JPanel {
         }
     }
 
-    //using dependency injection
     private void writeResults(){
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true));
-            writeResults(writer);
+            String[] record = createRecord();
+            writer.writeNext(record);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    //using dependency injection
-    private void writeResults(CSVWriter writer){
+    private String[] createRecord(){
         String [] record = new String[2];
         record[0] = LocalDateTime.now().toString();
         record[1] = Integer.toString(this.gameResult.numGuesses);
 
-        writer.writeNext(record);
+        return record;
     }
+
 }
