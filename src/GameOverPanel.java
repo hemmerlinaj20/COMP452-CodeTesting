@@ -78,37 +78,19 @@ public class GameOverPanel extends JPanel {
 
     private void updateAnsAndGuesses(){
         String newAnswerText = "The answer was " + this.gameResult.correctValue + ".";
-        String newGuessesText = getGuessesMessage();
+        String newGuessesText = GameOverPanelHelper.getGuessesMessage(gameResult);
 
         answerTxt.setText(newAnswerText);
         numGuessesTxt.setText(newGuessesText);
     }
 
-    private String getGuessesMessage(){
-        if(this.gameResult.numGuesses == 1){
-            return (this.gameResult.humanWasPlaying ? "You" : "I") + " guessed it on the first try!";
-        }
-        else {
-            return "It took " + (this.gameResult.humanWasPlaying ? "you" : "me") + " " + this.gameResult.numGuesses + " guesses.";
-        }
-    }
-
     public void writeResults(){
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true));
-            String[] record = createRecord();
+            String[] record = GameOverPanelHelper.createRecord(gameResult);
             writer.writeNext(record);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
-
-    private String[] createRecord(){
-        String [] record = new String[2];
-        record[0] = LocalDateTime.now().toString();
-        record[1] = Integer.toString(this.gameResult.numGuesses);
-
-        return record;
-    }
-
 }
