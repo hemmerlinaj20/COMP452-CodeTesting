@@ -14,6 +14,7 @@ public class HumanGuessesGame {
     private boolean gameIsDone; // true iff makeGuess has been called with the target value
 
     //using dependency injection
+    //using Test Double
     HumanGuessesGame(Random randGen){
         this.target = randGen.nextInt(UPPER_BOUND) + 1;
 
@@ -21,6 +22,8 @@ public class HumanGuessesGame {
         gameIsDone = false;
     }
 
+    //using dependency injection
+    //using Test Double
     HumanGuessesGame(){
         Random randGen = new Random();
         this.target = randGen.nextInt(UPPER_BOUND) + 1;
@@ -43,7 +46,6 @@ public class HumanGuessesGame {
         return GuessResult.CORRECT;
     }
 
-    //TODO: test
     int getNumGuesses(){
         return numGuesses;
     }

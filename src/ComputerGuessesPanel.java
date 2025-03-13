@@ -15,7 +15,7 @@ public class ComputerGuessesPanel extends JPanel {
     private ComputerGuessesGame game;
 
     public ComputerGuessesPanel(JPanel cardsPanel, Consumer<GameResult> gameFinishedCallback){
-        game = new ComputerGuessesGame();
+        game = new ComputerGuessesGame(1, 1000);
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -66,7 +66,7 @@ public class ComputerGuessesPanel extends JPanel {
 
         this.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent e) {
-                game = new ComputerGuessesGame();
+                game = new ComputerGuessesGame(1, 1000);
                 guessMessage.setText("I guess " + game.getLastGuess() + ".");
             }
         });

@@ -7,11 +7,10 @@ public class ComputerGuessesGame {
     private int upperBound; // correct number is <= upperBound
     private int lowerBound; // correct number is >= lowerBound
 
-    // TODO: TEST
-    public ComputerGuessesGame(){
+    public ComputerGuessesGame(int lowerBound, int upperBound){
         numGuesses = 0;
-        upperBound = 1000;
-        lowerBound = 1;
+        this.upperBound = upperBound;
+        this.lowerBound = lowerBound;
         lastGuess = (lowerBound + upperBound + 1) / 2;
     }
 
