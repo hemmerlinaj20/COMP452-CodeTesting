@@ -25,7 +25,7 @@ public class ComputerGuessesGame {
     public void updateBound(Boolean upper){
         if(upper){
             upperBound = Math.min(upperBound, lastGuess);
-        }else{
+        } else {
             lowerBound = Math.max(lowerBound, lastGuess + 1);
         }
     }
