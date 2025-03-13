@@ -21,6 +21,7 @@ public class StatsFile extends GameStats {
     // the past 30 days where the person took that many guesses
     private SortedMap<Integer, Integer> statsMap;
 
+    //using dependency injection
     public StatsFile() {
         try (CSVReader csvReader = new CSVReader(new FileReader(FILENAME))) {
             buildStatsMap(csvReader);
@@ -33,6 +34,7 @@ public class StatsFile extends GameStats {
         }
     }
 
+    //using dependency injection
     public StatsFile(CSVReader csvReader) {
         try{
             buildStatsMap(csvReader);

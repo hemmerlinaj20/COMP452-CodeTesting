@@ -18,7 +18,7 @@ public class NotCSVReader extends CSVReader {
     }
 
     public String[] readNext(){
-        if(index >= stuffToRead.length){
+        if(stuffToRead == null || index >= stuffToRead.length){
             return null;
         }
         String[] toReturn = stuffToRead[index];

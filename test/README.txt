@@ -14,15 +14,18 @@ Files Done Or Not Required:
 - GameStats                 -no tests necessary/no refactoring
 - ScreenID                  -no tests necessary/no refactoring
 - GuessResult               -no tests necessary/no refactoring
+- StatsFile                 -tested/refactored
 
 Possible Refactoring Still Required
-- StatsFile ???
+-
 
 Done By Alex:
 - ComputerGuessesPanel refactored and split into ComputerGuessesGame
 - Unit Tests written for ComputerGuessesGame
 - Test Double written for HumanGuessesGame
 - Unit Tests written for HumanGuessesGame
+- Test Doubles written for StatsFile
+- Unit Tests written for StatsFile
 
 Done By Nathan
 - GameOverPanel refactored and split into GameOverPanelHelper
@@ -31,3 +34,4 @@ Done By Nathan
 - Test Double written for StatsPanelHelper
 - Unit Tests written for StatsPanelHelper
 - Lamda changed for GuessTheNumberUI
+- StatsFile refactored
