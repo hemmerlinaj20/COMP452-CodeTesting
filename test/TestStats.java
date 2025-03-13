@@ -10,9 +10,9 @@ public class TestStats extends GameStats{
         mapGuessesToFreq = new HashMap<>();
 
         for(int x : guessesTaken){
-            int guessesForX = mapGuessesToFreq.getOrDefault(guessesTaken[x], 0);
+            int guessesForX = mapGuessesToFreq.getOrDefault(x, 0);
 
-            mapGuessesToFreq.put(guessesTaken[x], guessesForX + 1);
+            mapGuessesToFreq.put(x, guessesForX + 1);
         }
     }
 
