@@ -74,10 +74,6 @@ public class GameOverPanel extends JPanel {
         this.gameResult = result;
 
         updateAnsAndGuesses();
-
-        if(result.humanWasPlaying){
-            writeResults();
-        }
     }
 
     private void updateAnsAndGuesses(){
@@ -97,7 +93,7 @@ public class GameOverPanel extends JPanel {
         }
     }
 
-    private void writeResults(){
+    public void writeResults(){
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true));
             String[] record = createRecord();
