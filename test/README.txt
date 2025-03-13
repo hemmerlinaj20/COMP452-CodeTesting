@@ -1,23 +1,5 @@
-Put your JUnit test classes and test doubles in this folder.
-
-Files Done Or Not Required:
-- ComputerGuessesPanel      -refactored/no tests necessary
-- ComputerGuessesGame       -tested
-- HumanGuessesPanel         -no tests necessary/no refactoring
-- HumanGuessesGame          -tested
-- GameOverPanel             -refactored/no tests necessary
-- GameOverPanelHelper       -tested
-- StatsPanel                -refactored/no tests necessary
-- StatsPanelHelper          -tested
-- Lamda in GuessTheNumberUI -finished/no tests necessary
-- GameResult                -no tests necessary/no refactoring
-- GameStats                 -no tests necessary/no refactoring
-- ScreenID                  -no tests necessary/no refactoring
-- GuessResult               -no tests necessary/no refactoring
-- StatsFile                 -tested/refactored
-
-Possible Refactoring Still Required
--
+Comp 452 Code Testing Project
+Alex Hemmerlin and Nathan Striebel
 
 Done By Alex:
 - ComputerGuessesPanel refactored and split into ComputerGuessesGame
