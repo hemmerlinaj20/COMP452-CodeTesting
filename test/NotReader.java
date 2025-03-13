@@ -1,5 +1,7 @@
 import java.io.Reader;
 
+//using dependency injection
+// Test Double
 public class NotReader extends Reader {
 
     private String toRead;
